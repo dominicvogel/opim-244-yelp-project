@@ -31,4 +31,4 @@ API_KEY="_________"
 Run Yelp Script:
 
 ```sh
-pthon app/yelp_search.py
+python app/yelp_search.py
