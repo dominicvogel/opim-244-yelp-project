@@ -5,9 +5,9 @@ OPIM244 final project on Yelp. Created by Sachi Tejani, James Kim, Dominic Vogel
 
 Create and activate a virtual environment:
 ```sh
-conda create -n unemployment-env python=3.8
+conda create -n yelp-env python=3.8
 
-conda activate unemployment-env
+conda activate yelp-env
 ```
 
 Install package dependencies:

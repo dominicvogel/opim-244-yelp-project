@@ -2,7 +2,7 @@ python-dotenv
 
 requests
 
-copy
+#copy
 
 json
 
