@@ -7,11 +7,11 @@ import json
 def georgetown_yelp(TERM="sandwiches",LOCATION="georgetown"):
     request_url = f"https://api.yelp.com/v3/businesses/search?term={TERM}&location={LOCATION}"
     headers = {
-        'Authorization': 'Bearer %s' % API_KEY,
+        'Authorization': 'Bearer %s' % API_KEY
         }
     response = requests.get(request_url,headers=headers)
     data = json.loads(response.text)
-    print(len(data["businesses"]))
+    # print(len(data["businesses"]))
     # print(type(data))
     # print(data.keys())
     # print(data["businesses"][0])
@@ -29,8 +29,11 @@ def georgetown_yelp(TERM="sandwiches",LOCATION="georgetown"):
     late_night_options = []
     for id in ids:
         specific_request_url = f"https://api.yelp.com/v3/businesses/{id}"
+        #review_url=f"https://api.yelp.com/v3/businesses/{id}/reviews"
         response = requests.get(specific_request_url,headers=headers)
+        #review_response = requests.get(review_url,headers=headers)
         data = json.loads(response.text)
+        #review_data = json.loads(review_response.text)
 
 
         # check if the business is open overnight for each day of the week if it is for 3 or more days then
@@ -51,6 +54,7 @@ def georgetown_yelp(TERM="sandwiches",LOCATION="georgetown"):
             print()
     # print(late_night_options)
     # display information from the late night options
+    print("Here are your late night options: ")
     for option in late_night_options:
         # print(option.keys())
         print("NAME: ", option["name"])
@@ -58,3 +62,30 @@ def georgetown_yelp(TERM="sandwiches",LOCATION="georgetown"):
         print("LOCATION: ", option["location"]["display_address"])
         print("PRICE: ", option["price"])
         print()
+        reviewid=option["id"]
+        review_url=f"https://api.yelp.com/v3/businesses/{reviewid}/reviews"
+        review_response = requests.get(review_url,headers=headers)
+        review_data = json.loads(review_response.text)
+        # print(review_data)
+        countreviews = 1
+        # review_list = []
+        # print(review_data["reviews"])
+        for review in review_data["reviews"]:
+            print("REVIEW", countreviews, ":")
+            print(review["text"])
+            print()
+            countreviews+=1
+        #   review_list.append(review["text"])
+        #   countreviews+=1
+        #   if countreviews==5:
+        #     break
+
+        # print(review_list)
+        # print(review_data["reviews"][0]["text"])
+
+
+
+
+georgetown_yelp(TERM="crepes")
+
+
