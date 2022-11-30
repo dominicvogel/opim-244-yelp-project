@@ -2,6 +2,8 @@ from requests import cookies
 from copy import Error
 import requests
 import json
+from yelp_load import API_KEY
+
 # from IPython.display import Image, display 
 
 def georgetown_yelp(TERM="sandwiches",LOCATION="georgetown"):
