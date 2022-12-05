@@ -1,7 +1,7 @@
-from copy import Error
+# from copy import Error
 import requests
 import json
-from yelp_load import API_KEY
+from app.yelp_load import API_KEY
 
 # from IPython.display import Image, display 
 
@@ -45,16 +45,17 @@ def fetch_reviews(id, headers):
             break
 
 
-def georgetown_yelp(TERM="sandwiches",LOCATION="georgetown"):
+def georgetown_yelp(TERM,LOCATION):
     request_url = f"https://api.yelp.com/v3/businesses/search?term={TERM}&location={LOCATION}"
     headers = {
-        'Authorization': 'Bearer %s' % API_KEY
+        'Authorization':'Bearer %s' % API_KEY
         }
     response = requests.get(request_url,headers=headers)
     data = json.loads(response.text)
-    
+    # breakpoint()
     # create a list of ids for all search results that meet the parameters
     ids = []
+    # print(data)
     for business in data["businesses"]:
         ids.append(business["id"])
 
@@ -77,6 +78,10 @@ def georgetown_yelp(TERM="sandwiches",LOCATION="georgetown"):
         fetch_reviews(option["id"], headers)
 
 
-georgetown_yelp(TERM="hummus")
+if __name__ == "__main__":
+
+    TERM = input("Please input what food you are craving (default: 'burgers'): ") or "burgers"
+    LOCATION = input("\nSearching late night food options near Georgetown\nIf you would like to search another location please input or press enter: ") or "georgetown"
+    georgetown_yelp(TERM, LOCATION)
 
 
