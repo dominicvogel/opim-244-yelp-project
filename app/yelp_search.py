@@ -46,6 +46,7 @@ def fetch_reviews(id, headers):
 
 
 def georgetown_yelp(TERM,LOCATION):
+
     request_url = f"https://api.yelp.com/v3/businesses/search?term={TERM}&location={LOCATION}"
     headers = {
         'Authorization':'Bearer %s' % API_KEY
