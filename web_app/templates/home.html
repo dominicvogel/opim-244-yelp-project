@@ -1,26 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>My App</title>
-</head>
-<body>
+{% extends "layout.html" %}
 
-    <h1>Yelp Home Page</h1>
+{% block content %}
 
-    <p>Hello student, need a study break? Hungry? </p>
+    <h1>Welcome to our Georgetown Yelp Application</h1>
 
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/options">Options</a></li>
-        </ul>
-    </nav>
+    <p>We are excited to help you find good food late at night!</p>
 
-    <footer>
-        <p>My footer</p>
-    </footer>
-
-</body>
-</html>
+{% endblock %}
