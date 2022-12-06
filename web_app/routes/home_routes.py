@@ -19,7 +19,7 @@ def about():
 
 @home_routes.route("/options")
 def display_options():
-    print("OPTIONS COMING")
+    print("OPTIONS...")
 
     # if the request contains url params, for example a request to "/hello?name=Harper"
     # the request object's args property will hold the values in a dictionary-like structure

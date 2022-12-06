@@ -1,27 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>My App</title>
-</head>
-<body>
+{% extends "layout.html" %}
 
-    <h1>About Me</h1>
+{% block content %}
 
-    <p>This is a paragraph on the "about" page.</p>
+    <h1>About this project</h1>
 
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/options">Options</a></li>
-        </ul>
-    </nav>
+    <p>We created this app so that students can easily find what's open late when they are studying</p>
 
-    <footer>
-        <p>My footer</p>
-    </footer>
-
-</body>
-</html>
-
+{% endblock %}
