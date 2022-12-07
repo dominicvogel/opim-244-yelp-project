@@ -1,0 +1,24 @@
+
+{% extends "bootstrap.html" %}
+{% set active_page = "input_form" %}
+
+{% block content %}
+
+    <h2>Late Night Options Form</h2>
+
+    <p>Input what and where you want to eat below</p>
+
+    <form action="/input/display" method="POST">
+
+        <label>Craving:</label>
+        <input type="text" name="term" placeholder="pizza" value="pizza">
+        <br>
+
+        <label>Location:</label>
+        <input type="text" name="location" placeholder="georgetown" value="georgetown">
+        <br>
+
+        <button class="btn btn-success">Click for some good eats</button>
+    </form>
+
+{% endblock %}

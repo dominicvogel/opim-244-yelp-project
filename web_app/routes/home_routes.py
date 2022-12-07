@@ -17,9 +17,9 @@ def about():
     # return "About Me"
     return render_template("about.html")
 
-@home_routes.route("/options")
-def display_options():
-    print("OPTIONS...")
+@home_routes.route("/search")
+def search():
+    print("SEARCH...")
 
     # if the request contains url params, for example a request to "/hello?name=Harper"
     # the request object's args property will hold the values in a dictionary-like structure
@@ -32,4 +32,4 @@ def display_options():
 
     message = f"Hello, {name}!"
     # return message
-    return render_template("options.html", message=message)
+    return render_template("search.html", message=message)

@@ -1,9 +1,27 @@
-{% extends "layout.html" %}
+{% extends "bootstrap.html" %}
+{% set active_page = "home" %}
 
 {% block content %}
 
     <h1>Welcome to our Georgetown Yelp Application</h1>
 
-    <p>We are excited to help you find good food late at night!</p>
+    <p>We are excited to help you find good food late at night! Please navigate to our search page.
+    </p>
+<!-- SEE: https://getbootstrap.com/docs/5.2/components/carousel/ -->
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="5000">
+                <img src="https://localmarketinginstitute.com/wp-content/uploads/2020/03/yelp-reviews.png" class="d-block w-70" alt="...">
+            </div>
+
+            <div class="carousel-item" data-bs-interval="5000">
+                <img src="https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fit,w_730,h_487/stock%2FGettyImages-736491775" class="d-block w-70" alt="...">
+            </div>
+
+            <div class="carousel-item" data-bs-interval="5000">
+                <img src="https://www.georgetowndc.com/wp-content/uploads/2019/07/aaht-healyhall1_48654333031_o-1400x800.jpg" class="d-block w-70" alt="...">
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

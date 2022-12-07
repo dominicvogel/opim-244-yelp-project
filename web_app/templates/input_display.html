@@ -1,0 +1,21 @@
+{% extends "bootstrap.html" %}
+{% set active_page = "input_display" %}
+
+{% block content %}
+
+<h1>Late Night Food Options</h1>
+
+<p class="lead">Here are the late night food options:</p>
+
+<ul>
+{% for biz in businesses %}
+  <li> Result: {{biz["name"]}} -- {{ biz["location"] }} -- {{ biz["rating"] }} -- {{ biz["price"]}} </li>
+{% endfor %}
+</ul>
+
+{% endblock %}
+
+
+
+
+

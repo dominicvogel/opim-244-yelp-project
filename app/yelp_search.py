@@ -35,19 +35,13 @@ def fetch_reviews(id, headers):
     review_url=f"https://api.yelp.com/v3/businesses/{id}/reviews"
     review_response = requests.get(review_url,headers=headers)
     review_data = json.loads(review_response.text)
-    countreviews = 1
-    for review in review_data["reviews"]:
-        print("REVIEW", countreviews, ":")
-        print(review["text"])
-        print()
-        countreviews+=1
-        if countreviews>3:
-            break
+    return review_data
+    
 
 
-def georgetown_yelp(TERM,LOCATION):
+def georgetown_yelp(term,location):
 
-    request_url = f"https://api.yelp.com/v3/businesses/search?term={TERM}&location={LOCATION}"
+    request_url = f"https://api.yelp.com/v3/businesses/search?term={term}&location={location}"
     headers = {
         'Authorization':'Bearer %s' % API_KEY
         }
@@ -59,30 +53,36 @@ def georgetown_yelp(TERM,LOCATION):
     # print(data)
     for business in data["businesses"]:
         ids.append(business["id"])
-
-    late_night_options = fetch_latenight(ids, headers)
     
-    if len(late_night_options) == 0:
-        print("Sorry, no options found. What else are you craving?")
-
-    # display information from the late night options
-    print("Here are your late night options in", LOCATION,": ")
-    for option in late_night_options:
-        print("NAME: ", option["name"])
-        print("RATING: ", option["rating"])
-        print("LOCATION: ", option["location"]["display_address"])
-        try:
-            print("PRICE: ", option["price"])
-        except KeyError as e:
-            print()
-        print()
-        fetch_reviews(option["id"], headers)
+    return ids, headers
 
 
 if __name__ == "__main__":
 
-    TERM = input("Please input what food you are craving (default: 'burgers'): ") or "burgers"
-    LOCATION = input("\nSearching late night food options near Georgetown\nIf you would like to search another location please input or press enter: ") or "georgetown"
-    georgetown_yelp(TERM, LOCATION)
-
+    term = input("Please input what food you are craving (default: 'burgers'): ") or "burgers"
+    location = input("\nSearching late night food options near Georgetown\nIf you would like to search another location please input or press enter: ") or "georgetown"
+    search_options = georgetown_yelp(term, location)
+    late_night_options = fetch_latenight(search_options[0], search_options[1])
+    if len(late_night_options) == 0:
+        print("Sorry, no options found.")
+    else:
+        print("Here are your late night options in", location,": ")
+        for option in late_night_options:
+            print("NAME: ", option["name"])
+            print("RATING: ", option["rating"])
+            print("LOCATION: ", option["location"]["display_address"])
+            try:
+                print("PRICE: ", option["price"])
+            except KeyError as e:
+                print()
+            print()
+            review_data = fetch_reviews(option["id"], search_options[1])
+            countreviews = 1
+            for review in review_data["reviews"]:
+                print("REVIEW", countreviews, ":")
+                print(review["text"])
+                print()
+                countreviews+=1
+                if countreviews>3:
+                    break
 
