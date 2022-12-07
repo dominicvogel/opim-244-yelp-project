@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<h1>Late Night Food Options</h1>
+<!-- <h1>Late Night Food Options</h1>
 
 <p class="lead">Here are the late night food options:</p>
 
@@ -11,8 +11,32 @@
 {% for biz in businesses %}
   <li> Result: {{biz["name"]}} -- {{ biz["location"] }} -- {{ biz["rating"] }} -- {{ biz["price"]}} </li>
 {% endfor %}
-</ul>
+</ul> -->
 
+<h1>Late Night Food Options</h1>
+
+<p class="lead">Here are the late night food options:</p>
+
+<div class="row">
+    {% for biz in businesses %}
+        <div class="col">
+            <div class="card" style="width: 18rem; margin-bottom: 20px;">
+                <img src="{{ biz.image_url}}" class="card-img-top"  alt="an image of the business">
+
+                <div class="card-body">
+                    <h5 class="card-title">{{ biz.name}}</h5>
+                    <p class="card-text">Rating: {{ biz.rating }}</p>
+                    <p class="card-text">Location: 
+                        {% for item in biz.location.display_address %}
+                            {{ item }}
+                    {% endfor %} </p>
+                    <p class="card-text">Price: {{ biz.price }}</p>
+                    <!-- <a href="#" class="card-link">Card link</a> -->
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>     
 {% endblock %}
 
 
