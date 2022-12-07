@@ -31,8 +31,8 @@ API_KEY="_________"
 Run Yelp Script:
 
 ```sh
-python app/yelp_search.py
-
+python -m app.yelp_search
+```
 
 ### Web App
 
