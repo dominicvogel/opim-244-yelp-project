@@ -12,6 +12,7 @@ def input_form():
     print("INPUT FORM...")
     return render_template("input_form.html")
 
+# default is only responding to GET requests so we need to specify POST
 @input_routes.route("/input/display", methods=["GET", "POST"])
 def input_display():
     print("DISPLAYING OPTIONS...")
@@ -31,6 +32,9 @@ def input_display():
     try:
         ids = georgetown_yelp(term, location)
         businesses = fetch_latenight(ids[0],ids[1])
+        if(len(businesses))==0:
+            # flash("No food found, try something else", "danger")
+            return redirect("/input/form")
         #flash("Fetched Real-time Market Data!", "success")
         return render_template("input_display.html",
             businesses = businesses

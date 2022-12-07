@@ -26,7 +26,10 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ biz.name}}</h5>
                     <p class="card-text">Rating: {{ biz.rating }}</p>
-                    <p class="card-text">Location: {{ biz.location.display_address }}</p>
+                    <p class="card-text">Location: 
+                        {% for item in biz.location.display_address %}
+                            {{ item }}
+                    {% endfor %} </p>
                     <p class="card-text">Price: {{ biz.price }}</p>
                     <!-- <a href="#" class="card-link">Card link</a> -->
                 </div>
