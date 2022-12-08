@@ -31,7 +31,13 @@
                             {{ item }}
                     {% endfor %} </p>
                     <p class="card-text">Price: {{ biz.price }}</p>
-                    <!-- <a href="#" class="card-link">Card link</a> -->
+                    
+                    <ul class="list-group list-group-flush">
+                        {% for rev in biz.reviews %}
+                            <li class="list-group-item"> Review: {{rev}} </li>
+                        {% endfor %}
+                    </ul>
+
                 </div>
             </div>
         </div>
