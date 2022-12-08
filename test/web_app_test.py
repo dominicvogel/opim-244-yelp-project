@@ -28,15 +28,15 @@ def test_about(test_client):
     assert response.status_code == 200
     assert b"<h1>About this project</h1>" in response.data
 
-def test_search(test_client):
+#def test_search(test_client):
     #
     # DEFAULT SYMBOL
     #
-    response = test_client.get("/input/form")
-    assert response.status_code == 200
-    assert b"<h2>Term (pizza)</h2>" in response.data
-    assert b"<h2>Location (georgetown)</h2>" in response.data
-    assert b"Late Night Food Options" in response.data
+    #response = test_client.get("/input/form")
+    #assert response.status_code == 200
+    #assert b"<h2>Term (pizza)</h2>" in response.data
+    #assert b"<h2>Location (georgetown)</h2>" in response.data
+    #assert b"Late Night Food Options" in response.data
 
     #
     # CUSTOMIZED SYMBOL VIA URL PARAMS
