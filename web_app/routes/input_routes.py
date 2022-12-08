@@ -36,6 +36,16 @@ def input_display():
             # flash("No food found, try something else", "danger")
             return redirect("/input/form")
         #flash("Fetched Real-time Market Data!", "success")
+        for biz in businesses:
+            review_data = fetch_reviews(biz["id"], ids[1])
+            current_reviews=[]
+            countreviews = 1
+            for review in review_data["reviews"]:
+                current_reviews.append(review["text"])
+                countreviews+=1
+                if countreviews>3:
+                    break
+            biz["reviews"] = current_reviews
         return render_template("input_display.html",
             businesses = businesses
         )
