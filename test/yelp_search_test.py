@@ -12,10 +12,10 @@ def test_georgetown_yelp():
     response = requests.get(request_url,headers=headers)
     data = json.loads(response.text)
     ids = []
-    for business in data["businesses"]:
-        ids.append(business["id"])
-        print(business["id"])
-    assert isinstance(business["id"], str)
+  #for business in data["businesses"]:
+  #    ids.append(business["id"])
+    assert isinstance(data, dict)
+    assert "businesses" in data.keys()
 
 def test_fetch_reviews():
     headers = {'Authorization':'Bearer %s' % API_KEY}    
@@ -32,5 +32,6 @@ def test_fetch_latenight():
     specific_request_url = "https://api.yelp.com/v3/businesses/9X0F8gl4mPSSFHkxSB2lXA"
     specific_response = requests.get(specific_request_url,headers=headers)
     specific_data = json.loads(specific_response.text)
-    daily_hours = specific_data["hours"][0]["open"]
     assert isinstance(specific_data, dict)
+    assert "hours" in specific_data.keys()
+
