@@ -36,8 +36,7 @@ def fetch_reviews(id, headers):
     review_response = requests.get(review_url,headers=headers)
     review_data = json.loads(review_response.text)
     return review_data
-    
-
+      
 
 def georgetown_yelp(term,location):
 
