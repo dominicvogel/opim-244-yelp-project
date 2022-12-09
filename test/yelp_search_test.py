@@ -11,6 +11,7 @@ def test_georgetown_yelp():
     headers = {'Authorization':'Bearer %s' % API_KEY}
     response = requests.get(request_url,headers=headers)
     data = json.loads(response.text)
+    #print(data.keys())
     assert isinstance(data, dict)
     assert "businesses" in data.keys()
 
