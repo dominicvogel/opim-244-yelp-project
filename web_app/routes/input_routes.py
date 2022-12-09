@@ -33,7 +33,7 @@ def input_display():
         ids = georgetown_yelp(term, location)
         businesses = fetch_latenight(ids[0],ids[1])
         if(len(businesses))==0:
-            # flash("No food found, try something else", "danger")
+            flash("No food found, try something else", "danger")
             return redirect("/input/form")
 
 
