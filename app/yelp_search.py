@@ -49,7 +49,6 @@ def georgetown_yelp(term,location):
     # breakpoint()
     # create a list of ids for all search results that meet the parameters
     ids = []
-    # print(data)
     for business in data["businesses"]:
         ids.append(business["id"])
     
