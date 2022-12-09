@@ -2,36 +2,45 @@
 
 from app.yelp_search import fetch_latenight, fetch_reviews, georgetown_yelp
 import json
-
-#def test_fetch_latenight():
-
-    #assert 2 + 2 == 4
-
- #   assert fetch_latenight() == late_night_options
+import requests
+from app.yelp_load import API_KEY
  
- 
-def georgetown_yelp_test(term, location):
+def test_georgetown_yelp():
     result = georgetown_yelp("pizza", "georgetown")
-    assert isinstance(result, dict)
-    assert "businesses" in result.keys()
-    assert isinstance(result["businesses"], str)
+    request_url = "https://api.yelp.com/v3/businesses/search?term=pizza&location=georgetown"
+    headers = {
+        'Authorization':'Bearer %s' % API_KEY
+        }
+    response = requests.get(request_url,headers=headers)
+    data = json.loads(response.text)
+    ids = []
+    for business in data["businesses"]:
+        ids.append(business["id"])
+        print(business["id"])
+    assert isinstance(business["id"], str)
 
-#def fetch_reviews_test(id, headers):
-    result = fetch_reviews(id, headers)
-    review_url=f"https://api.yelp.com/v3/businesses/{id}/reviews"
-    assert isinstance(id, dict)
-    assert review_url == "https://api.yelp.com/v3/businesses//reviews"
-
+#def test_fetch_reviews():
+#    result = fetch_reviews("9X0F8gl4mPSSFHkxSB2lXA", API_KEY)
+#    review_url= "https://api.yelp.com/v3/businesses/9X0F8gl4mPSSFHkxSB2lXA/reviews"
+#    assert isinstance(id, dict)
+#    assert review_url == "https://api.yelp.com/v3/businesses//reviews"
+#
+#def fetch_reviews(id, headers):
+#    review_url=f"https://api.yelp.com/v3/businesses/{id}/reviews"
+#    review_response = requests.get(review_url,headers=headers)
+#    review_data = json.loads(review_response.text)
+#    return review_data
+    
     
 #def test_fetch_latenight(ids, headers):
-    result = fetch_latenight(ids, headers)
-    business = result["businesses"]
-    assert isinstance(business, json)
-    assert "hours" in business.keys()
-    assert "open" in business.hours()
-
-    assert len(result) >= 20
-
+#   result = fetch_latenight(ids, headers)
+#   business = result["businesses"]
+#   assert isinstance(business, json)
+#   assert "hours" in business.keys()
+#   assert "open" in business.hours()
+#
+#   assert len(result) >= 20
+#
 #def test_data_fetching():
 #    result = fetch_stocks_data("NFLX")
 #    assert isinstance(result, DataFrame)

@@ -35,7 +35,7 @@ def input_display():
         if(len(businesses))==0:
             # flash("No food found, try something else", "danger")
             return redirect("/input/form")
-        #flash("Fetched Real-time Market Data!", "success")
+
 
         for biz in businesses:
             review_data = fetch_reviews(biz["id"], ids[1])
@@ -47,7 +47,7 @@ def input_display():
                 if countreviews>3:
                     break
             biz["reviews"] = current_reviews
-            
+        flash("Fetched Yelp Data", "success")   
         return render_template("input_display.html",
             businesses = businesses
         )
@@ -55,7 +55,7 @@ def input_display():
     except Exception as err:
         print('OOPS', err)
 
-        #flash("Market Data Error. Please check your symbol and try again!", "danger")
+        flash("Error, these inputs displayed no results. Check your inputs and try again.", "danger")
         return redirect("/input/form")
 
 #
