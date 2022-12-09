@@ -12,8 +12,6 @@ def test_georgetown_yelp():
     response = requests.get(request_url,headers=headers)
     data = json.loads(response.text)
     ids = []
-  #for business in data["businesses"]:
-  #    ids.append(business["id"])
     assert isinstance(data, dict)
     assert "businesses" in data.keys()
 
@@ -35,3 +33,5 @@ def test_fetch_latenight():
     assert isinstance(specific_data, dict)
     
 
+  #for business in data["businesses"]:
+  #    ids.append(business["id"])
