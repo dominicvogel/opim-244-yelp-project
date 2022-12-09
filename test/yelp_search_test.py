@@ -33,5 +33,5 @@ def test_fetch_latenight():
     specific_response = requests.get(specific_request_url,headers=headers)
     specific_data = json.loads(specific_response.text)
     assert isinstance(specific_data, dict)
-    assert "hours" in specific_data.keys()
+    
 
